@@ -1,10 +1,8 @@
 package org.example.DAO;
 
-import org.example.model.Car;
 import org.example.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 
 import java.util.List;
 
