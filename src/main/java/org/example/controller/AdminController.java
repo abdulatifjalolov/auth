@@ -1,32 +1,29 @@
 package org.example.controller;
 
-import org.example.DAO.CarDAO;
-import org.example.DAO.UserDAO;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.service.CarService;
+import org.example.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 @Controller
-@RequestMapping("admin/")
+@RequestMapping("/")
 public class AdminController {
-    private final UserDAO userDAO;
-    private final CarDAO carDAO;
+    private final UserService userService;
+    private final CarService carService;
 
-    public AdminController(UserDAO userDAO, CarDAO carDAO) {
-        this.userDAO = userDAO;
-        this.carDAO = carDAO;
+    public AdminController(UserService userService, CarService carService) {
+        this.userService = userService;
+        this.carService = carService;
     }
 
-    @GetMapping("/user-list")
+
+    @GetMapping("")
     public String getCategoryList(
             Model model
     ) {
-        model.addAttribute("userList", userDAO.getList());
-        return "users";
+        model.addAttribute("userList", userService.getList());
+        return "index";
     }
 }

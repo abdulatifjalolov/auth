@@ -2,9 +2,10 @@ package org.example.service;
 
 import org.example.DAO.CarDAO;
 import org.example.DAO.UserDAO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserService implements BaseService{
     private  final CarDAO carDAO;
     private  final UserDAO userDAO;
