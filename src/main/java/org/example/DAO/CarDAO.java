@@ -11,12 +11,13 @@ public class CarDAO implements BaseDao<Car>{
     public CarDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
     @Override
     public Car getById(int id){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Car car = session.get(Car.class, id);
-        closeSession(session);
+        closeSession(session,sessionFactory);
         return car;
     }
     @Override
@@ -24,20 +25,20 @@ public class CarDAO implements BaseDao<Car>{
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(car);
-        closeSession(session);
+        closeSession(session,sessionFactory);
     }
     @Override
     public List<Car> getList(){
         Session session=sessionFactory.openSession();
         session.beginTransaction();
         List<Car> list = session.createCriteria(Car.class).list();
-        closeSession(session);
+        closeSession(session,sessionFactory);
         return list;
     }
     @Override
     public void delete(Car car){
         Session session = sessionFactory.openSession();
         session.delete(car);
-        closeSession(session);
+        closeSession(session,sessionFactory);
     }
 }

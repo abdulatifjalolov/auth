@@ -18,7 +18,7 @@ public class UserDAO implements BaseDao<Users>{
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Users users = session.get(Users.class, id);
-        closeSession(session);
+        closeSession(session,sessionFactory);
         return users;
     }
 
@@ -27,7 +27,7 @@ public class UserDAO implements BaseDao<Users>{
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
-        closeSession(session);
+        closeSession(session,sessionFactory);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UserDAO implements BaseDao<Users>{
         Session session=sessionFactory.openSession();
         session.beginTransaction();
         List<Users> list = session.createCriteria(Users.class).list();
-        closeSession(session);
+        closeSession(session,sessionFactory);
         return list;
     }
 
@@ -43,6 +43,6 @@ public class UserDAO implements BaseDao<Users>{
     public void delete(Users users) {
         Session session = sessionFactory.openSession();
         session.delete(users);
-        closeSession(session);
+        closeSession(session,sessionFactory);
     }
 }
